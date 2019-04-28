@@ -21,6 +21,23 @@ def get_several_data_as_csv(file_path):
 
 
 
+def get_several_data_as_excel(file_name):
+    path = 'data/' + file_name + '.xlsx'
+    df_list = []
+    file = pd.ExcelFile(path, header=None)  # bookを読む
+    for sheet in file.sheet_names:
+        df_list.append(file.parse(sheet))
+
+    data_set = []
+    for item in df_list:
+        data_set_dammy = []
+        for list_data in item.values:
+            data_set_dammy.append(list(list_data))
+        data_set.append(data_set_dammy)
+    return data_set
+
+
+
 def get_data(data_sheet_name):
     data = pd.read_csv(data_sheet_name + '.csv',header=None)
     print('data')
@@ -34,12 +51,10 @@ def get_data(data_sheet_name):
 
 if __name__ == '__main__':
     file_path = input('Please input path.')
-    path = file_path + '/*.csv'
-    get_several_data_as_csv(path)
+    data, num = get_several_data_as_csv(file_path)
+    #path = 'data/' + file_path + '.xlsx'
+    #data = get_several_data_as_excel(path)
 
-    #data_sheet_name = input('Please input data sheet name')
-    #x_data, y_data, data = get_data(data_sheet_name)
-    #print(x_data, y_data, data)
 
 
 
