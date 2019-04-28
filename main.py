@@ -1,5 +1,6 @@
 from monotone_chain import get_convex_hull
 from collect_data import get_several_data_as_csv
+from collect_data import get_several_data_as_excel
 from plot_function import setting_axis
 from plot_function import scatter_plot
 from plot_function import contours_plot
@@ -19,7 +20,8 @@ graph_width = 3.0
 
 if __name__ == '__main__':
     file_path = input("Please input path to files")
-    data_set, data_set_num = get_several_data_as_csv(file_path)
+    #data_set, data_set_num = get_several_data_as_csv(file_path)
+    data_set = get_several_data_as_excel(file_path)
     contours = [get_convex_hull(data) for data in data_set]
     setting_axis(x_label, y_label, axis_width, grid_on)
     for index, item in enumerate(contours):
