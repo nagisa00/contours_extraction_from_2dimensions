@@ -19,8 +19,7 @@ graph_width = 3.0
 
 if __name__ == '__main__':
     file_path = input("Please input path to files")
-    path = file_path + '/*.csv'
-    data_set, data_set_num = get_several_data_as_csv(path)
+    data_set, data_set_num = get_several_data_as_csv(file_path)
     contours = [get_convex_hull(data) for data in data_set]
     setting_axis(x_label, y_label, axis_width, grid_on)
     for index, item in enumerate(contours):
