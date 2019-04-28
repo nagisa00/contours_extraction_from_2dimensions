@@ -4,7 +4,8 @@ import os
 import glob
 
 
-def get_several_data_as_csv(path):
+def get_several_data_as_csv(file_path):
+    path = file_path + '/*.csv'
     files = glob.glob(path)
     data = [pd.read_csv(item, header=None) for item in files]
     data_set = []
@@ -16,7 +17,7 @@ def get_several_data_as_csv(path):
             data_set_dammy.append([x,y])
         data_set.append(data_set_dammy)
 
-    return data_set
+    return data_set, len(data_set)
 
 
 
